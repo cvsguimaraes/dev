@@ -106,6 +106,7 @@
 
         // Preload all images
         function preloadImages() {
+            const cacheBuster = Date.now(); // One-time cache buster
             for (let i = 1; i <= frameCount; i++) {
                 const img = new Image();
                 img.onload = () => {
@@ -121,7 +122,7 @@
                         loading.classList.add('hidden');
                     }
                 };
-                img.src = `frames/sequence/frame_${String(i).padStart(4, '0')}.jpg`;
+                img.src = `frames/sequence/frame_${String(i).padStart(4, '0')}.jpg?v=${cacheBuster}`;
                 images.push(img);
             }
         }
